@@ -1,5 +1,7 @@
 const path = require("path");
 
+
+
 console.log(path.resolve(__dirname , 'dist'),"_--当前路径");
 
 module.exports = {
@@ -8,7 +10,7 @@ module.exports = {
 		filename: 'bundle.js',
 		path: path.resolve(__dirname , 'dist')
 	},
-	modules: {
+	module: {
 		rules:[
 			{
 				test:/\.css$/,
