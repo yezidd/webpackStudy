@@ -1,19 +1,25 @@
-import _ from 'lodash'
-import "./common/style.css";
-import header from "./common/img/header.jpg";
+import _ from 'lodash';
+import printMe from './print.js';
 
 function component() {
-  var divDom = document.createElement("div");
-  divDom.innerHTML = ['hello', 'webpack'].join("-");
-  var imgDom = new Image();
-  imgDom.src = header;
+  var element = document.createElement('div');
+  var btn = document.createElement('button');
 
-  var pDom = document.createElement("p");
-  pDom.innerText = _.join(['hello', 'world'], "=");
+  element.innerHTML = _.join(['Hel222lo', 'webpack'], ' ');
 
-  divDom.appendChild(pDom);
-  divDom.appendChild(imgDom);
-  return divDom;
+  btn.innerHTML = 'Click me and check the console!';
+  btn.onclick = printMe;
+
+  element.appendChild(btn);
+
+  return element;
 }
 
 document.body.appendChild(component());
+
+if (module.hot) {
+  module.hot.accept('./print.js', function () {
+    console.log('Accepting the updated printMe module!');
+    printMe();
+  })
+}
