@@ -13,7 +13,7 @@ module.exports = {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
-  devtool: 'inline-source-map',
+
   module: {
     rules: [
       {test: /\.css$/, use: ['style-loader', 'css-loader']},
@@ -25,11 +25,7 @@ module.exports = {
     new HtmlWebpack({
       title: "webpack学习"
     }),
-    new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+
   ],
-  devServer: {
-    contentBase: "/build",
-    hot:true
-  }
+
 };
