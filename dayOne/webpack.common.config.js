@@ -7,10 +7,14 @@ console.log(path.resolve(__dirname, 'dist'), "_--当前路径");
 
 module.exports = {
   entry: {
-    index: './src/index.js'
+    index: './src/index.js',
+    vendor: [
+      'lodash'
+    ]
   },
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
 
@@ -25,7 +29,12 @@ module.exports = {
     new HtmlWebpack({
       title: "webpack学习"
     }),
-
+    // new webpack.NamedModulesPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor"
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "manifest"
+    })
   ],
-
 };
